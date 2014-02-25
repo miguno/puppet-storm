@@ -1,0 +1,35 @@
+###
+### This file is managed by Puppet.
+###
+
+storm.zookeeper.servers:
+<% for @zkserver in @zookeeper_servers -%>
+    - <%= @zkserver %>
+<% end -%>
+
+nimbus.host: "<%= @nimbus_host %>"
+
+storm.local.dir: "<%= @local_dir %>"
+storm.local.hostname: "<%= @local_hostname %>"
+
+nimbus.childopts:     "<%= @nimbus_childopts %>"
+ui.childopts:         "<%= @ui_childopts %>"
+supervisor.childopts: "<%= @supervisor_childopts %>"
+worker.childopts:     "<%= @worker_childopts %>"
+
+# Define the amount of workers that can be run on this machine.
+# Each worker is assigned a port to use for communication.
+supervisor.slots.ports:
+<% @supervisor_slots_ports.each do |port| -%>
+    - <%= port %>
+<% end -%>
+
+# Messaging backend for inter-task communication
+#   "backtype.storm.messaging.netty.Context" -- use Netty (default since Storm 0.9.1)
+#
+# Important note: The puppet-storm module intentionally does not support the legacy
+#                 ZeroMQ messaging backend anymore.  If you need ZeroMQ as a backend,
+#                 you must make sure yourself to deploy ZeroMQ and JZMQ to the Storm nodes.
+#                 Then set `storm.messaging.transport` to "backtype.storm.messaging.zmq".
+#
+storm.messaging.transport: "<%= @storm_messaging_transport %>"
