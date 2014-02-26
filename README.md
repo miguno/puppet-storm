@@ -67,6 +67,8 @@ See section [Usage](#usage) below.
   Java package is installed _before_ Storm to prevent startup problems.
     * Because different teams may have different approaches to install "base" packages such as Java, this module does
       intentionally not puppet-require Java directly.
+    * Note: Based on our own experience we strongly discourage the use of OpenJDK 6.  We run into many weird errors
+      with it.  If you need Java 6 use Oracle/Sun Java 6.
 * This module requires the following **additional Puppet modules**:
 
     * [puppet-supervisor](https://github.com/miguno/puppet-supervisor)
