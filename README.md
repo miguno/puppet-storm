@@ -265,7 +265,6 @@ _Note: The locations below may be different depending on the Storm RPM you are a
 # TODO
 
 * Enhance in-line documentation of Puppet manifests.
-* Move Storm log files from `/opt/storm/logs/` to `/var/log/storm/`.
 * Add unit tests and specs.
 * Add Travis CI setup.
 
