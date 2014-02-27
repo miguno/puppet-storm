@@ -33,8 +33,8 @@ class storm::install inherits storm {
   # (and Storm 0.9.0-wip21) the log directory is still hardcoded in same places in the Storm
   # code.  Otherwise we could just supply a custom "storm.home"/logback/cluster.xml config.
   # See https://groups.google.com/forum/#!topic/storm-user/IKRtIkqQfqc for details.
-  $storm_rpm_log_dir = $storm::params::log_dir
-  if $log_dir != $storm_rpm_log_dir {
+  if $log_dir != $storm::params::storm_rpm_log_dir {
+    # This exec ensures we create intermediate directories for $log_dir as required
     exec { 'create-storm-log-directory':
       command => "mkdir -p ${log_dir}",
       path    => ['/bin', '/sbin'],
@@ -48,14 +48,14 @@ class storm::install inherits storm {
       mode    => '0750',
     }
     ->
-    file { $storm_rpm_log_dir:
+    file { $storm::params::storm_rpm_log_dir:
       ensure => link,
       target => $log_dir,
       force   => true,
     }
   }
   else {
-    file { $storm_rpm_log_dir:
+    file { $log_dir:
       ensure  => directory,
       owner   => $user,
       group   => $group,

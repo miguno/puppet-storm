@@ -38,4 +38,8 @@ class storm::params {
   $user_managehome         = true
   $worker_childopts        = "-Xmx256m -Djava.net.preferIPv4Stack=true"
   $zookeeper_servers       = ['zookeeper1']
+
+  # Parameters not exposed to the user via init.pp
+  $storm_rpm_log_dir       = '/opt/storm/logs' # Must match RPM layout; use $log_dir to define actual logging directory
+  validate_absolute_path($storm_rpm_log_dir)
 }
