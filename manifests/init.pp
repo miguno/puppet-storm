@@ -8,6 +8,8 @@ class storm(
   $local_dir               = $storm::params::local_dir,
   $local_hostname          = $storm::params::local_hostname,
   $log_dir                 = $storm::params::log_dir,
+  $logback                 = $storm::params::logback,
+  $logback_template        = $storm::params::logback_template,
   $nimbus_host             = $storm::params::nimbus_host,
   $nimbus_childopts        = $storm::params::nimbus_childopts,
   $package_name            = $storm::params::package_name,
@@ -49,6 +51,8 @@ class storm(
   validate_absolute_path($local_dir)
   validate_string($local_hostname)
   validate_absolute_path($log_dir)
+  validate_absolute_path($logback)
+  validate_string($logback_template)
   validate_string($nimbus_host)
   validate_string($nimbus_childopts)
   validate_string($package_name)
