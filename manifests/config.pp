@@ -9,4 +9,13 @@ class storm::config inherits storm {
     require => [ Package['storm'], File[$log_dir], File[$local_dir] ],
   }
 
+  file { $logback:
+    ensure  => file,
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+    content => template($logback_template),
+    require => File[$config],
+  }
+
 }

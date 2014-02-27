@@ -249,7 +249,7 @@ Example:
 
 _Note: The locations below may be different depending on the Storm RPM you are actually using._
 
-* Storm log files: `/opt/storm/logs/*`
+* Storm log files: `/var/log/storm/*`
 * Supervisord log files related to Storm processes:
     * `/var/log/supervisor/storm-nimbus/storm-nimbus.out`
     * `/var/log/supervisor/storm-nimbus/storm-nimbus.err`
@@ -265,7 +265,6 @@ _Note: The locations below may be different depending on the Storm RPM you are a
 # TODO
 
 * Enhance in-line documentation of Puppet manifests.
-* Move Storm log files from `/opt/storm/logs/` to `/var/log/storm/`.
 * Add unit tests and specs.
 * Add Travis CI setup.
 
