@@ -45,7 +45,7 @@ class storm::install inherits storm {
       ensure  => directory,
       owner   => $user,
       group   => $group,
-      mode    => '0750',
+      mode    => '0755',
     }
     ->
     file { $storm::params::storm_rpm_log_dir:
@@ -59,7 +59,7 @@ class storm::install inherits storm {
       ensure  => directory,
       owner   => $user,
       group   => $group,
-      mode    => '0750',
+      mode    => '0755',
       require => Package['storm'],
     }
   }
