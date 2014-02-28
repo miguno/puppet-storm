@@ -1,5 +1,12 @@
 # Change log
 
+## 1.0.2 (February 28, 2014)
+
+IMPROVEMENTS:
+
+* Storm log directory has 0755 permissions (from 0750) to simplify integration with logging/monitoring tools.
+
+
 ## 1.0.1 (February 27, 2014)
 
 BACKWARDS INCOMPATIBILITY:
