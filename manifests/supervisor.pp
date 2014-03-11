@@ -23,7 +23,7 @@ class storm::supervisor inherits storm {
         stderr_logfile_keep    => $service_stderr_logfile_keep,
         stopsignal             => 'KILL',
         stopasgroup            => true,
-        require                => [ Package['storm'], User[$user], File[$config], Class['::supervisor'] ],
+        require                => [ Class['storm::config'], Class['::supervisor'] ],
     }
 
 
