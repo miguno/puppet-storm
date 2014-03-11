@@ -60,7 +60,7 @@ class storm::install inherits storm {
     file { $storm::params::storm_rpm_log_dir:
       ensure => link,
       target => $log_dir,
-      force   => true,
+      force  => true,
     }
   }
   else {
