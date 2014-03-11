@@ -1,5 +1,16 @@
 # Change log
 
+## 1.0.3 (March 11, 2014)
+
+IMPROVEMENTS:
+
+* Recursively create `$local_dir` if needed.
+
+BUG FIXES:
+
+* Require Storm package before creating `$storm_rpm_log_dir` symlink.
+
+
 ## 1.0.2 (February 28, 2014)
 
 IMPROVEMENTS:
