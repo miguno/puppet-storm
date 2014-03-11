@@ -21,11 +21,20 @@ class storm::install inherits storm {
     name    => $package_name,
   }
 
+  # This exec ensures we create intermediate directories for $local_dir as required
+  exec { 'create-storm-local-directory':
+    command => "mkdir -p ${local_dir}",
+    path    => ['/bin', '/sbin'],
+    require => Package['storm'],
+  }
+  ->
   file { $local_dir:
-    ensure  => directory,
-    owner   => $user,
-    group   => $group,
-    mode    => '0750',
+    ensure       => directory,
+    owner        => $user,
+    group        => $group,
+    mode         => '0750',
+    recurse      => true,
+    recurselimit => 0,
   }
 
   # If $log_dir does not point to the default "storm.home"/logs/ directory, we create a symlink
