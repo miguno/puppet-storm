@@ -5,6 +5,8 @@
 IMPROVEMENTS
 
 * Add `$user_manage` and `$group_manage` parameters.
+* Initial support for testing this module.
+    * A skeleton for acceptance testing (`rake acceptance`) was also added.  Acceptance tests do not work yet.
 
 BACKWARDS INCOMPATIBILITY
 
