@@ -44,4 +44,12 @@ class storm::params {
   # Parameters not exposed to the user via init.pp
   $storm_rpm_log_dir       = '/opt/storm/logs' # Must match RPM layout; use $log_dir to define actual logging directory
   validate_absolute_path($storm_rpm_log_dir)
+
+  case $::osfamily {
+    'RedHat': {}
+
+    default: {
+      fail("The ${module_name} module is not supported on a ${::osfamily} based system.")
+    }
+  }
 }
