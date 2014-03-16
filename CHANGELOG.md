@@ -2,6 +2,10 @@
 
 ## 1.0.4 (March 16, 2014)
 
+IMPROVEMENTS
+
+* Add `$user_manage` and `$group_manage` parameters.
+
 BACKWARDS INCOMPATIBILITY
 
 * Change default value of `$package_ensure` from "latest" to "present".

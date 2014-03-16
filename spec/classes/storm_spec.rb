@@ -59,6 +59,31 @@ describe 'storm' do
 
         end
 
+        describe "storm class with disabled group management on #{osfamily}" do
+          let(:params) {{
+            :group_manage => false,
+          }}
+          it { should_not contain_group('storm') }
+          it { should contain_user('storm') }
+        end
+
+        describe "storm class with disabled user management on #{osfamily}" do
+          let(:params) {{
+            :user_manage  => false,
+          }}
+          it { should contain_group('storm') }
+          it { should_not contain_user('storm') }
+        end
+
+        describe "storm class with disabled user and group management on #{osfamily}" do
+          let(:params) {{
+            :group_manage => false,
+            :user_manage  => false,
+          }}
+          it { should_not contain_group('storm') }
+          it { should_not contain_user('storm') }
+        end
+
       end
     end
   end

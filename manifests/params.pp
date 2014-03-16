@@ -5,6 +5,7 @@ class storm::params {
   $gid                     = 53001
   $group                   = 'storm'
   $group_ensure            = 'present'
+  $group_manage            = true
   $local_dir               = '/app/storm'
   $local_hostname          = $::hostname
   $log_dir                 = '/var/log/storm'
@@ -37,6 +38,7 @@ class storm::params {
   $user_description        = 'Storm system account'
   $user_ensure             = 'present'
   $user_home               = '/home/storm'
+  $user_manage             = true
   $user_managehome         = true
   $worker_childopts        = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $zookeeper_servers       = ['zookeeper1']

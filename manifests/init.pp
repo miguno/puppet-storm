@@ -5,6 +5,7 @@ class storm(
   $gid                     = $storm::params::gid,
   $group                   = $storm::params::group,
   $group_ensure            = $storm::params::group_ensure,
+  $group_manage            = hiera('storm::group_manage', $storm::params::group_manage),
   $local_dir               = $storm::params::local_dir,
   $local_hostname          = $storm::params::local_hostname,
   $log_dir                 = $storm::params::log_dir,
@@ -37,6 +38,7 @@ class storm(
   $user_description        = $storm::params::user_description,
   $user_ensure             = $storm::params::user_ensure,
   $user_home               = $storm::params::user_home,
+  $user_manage             = hiera('storm::user_manage', $storm::params::user_manage),
   $user_managehome         = hiera('storm::user_managehome', $storm::params::user_managehome),
   $worker_childopts        = $storm::params::worker_childopts,
   $zookeeper_servers       = $storm::params::zookeeper_servers,
@@ -48,6 +50,7 @@ class storm(
   if !is_integer($gid) { fail('The $gid parameter must be an integer number') }
   validate_string($group)
   validate_string($group_ensure)
+  validate_bool($group_manage)
   validate_absolute_path($local_dir)
   validate_string($local_hostname)
   validate_absolute_path($log_dir)
@@ -84,6 +87,7 @@ class storm(
   validate_string($user_description)
   validate_string($user_ensure)
   validate_absolute_path($user_home)
+  validate_bool($user_manage)
   validate_bool($user_managehome)
   validate_string($worker_childopts)
   validate_array($zookeeper_servers)
