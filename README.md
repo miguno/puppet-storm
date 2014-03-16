@@ -1,4 +1,4 @@
-# puppet-storm
+# puppet-storm [![Build Status](https://travis-ci.org/miguno/puppet-storm.png?branch=master)](https://travis-ci.org/miguno/puppet-storm)
 
 Wirbelsturm-compatible [Puppet](http://puppetlabs.com/) module to deploy [Storm](http://storm.incubator.apache.org/)
 0.9+ clusters.
