@@ -27,6 +27,7 @@ Table of Contents
 * <a href="#changelog">Change log</a>
 * <a href="#contributing">Contributing</a>
 * <a href="#license">License</a>
+* <a href="#references">References</a>
 
 ---
 
@@ -339,3 +340,18 @@ to send patches and pull requests to puppet-storm.
 Copyright © 2014 Michael G. Noll
 
 See [LICENSE](LICENSE) for licensing information.
+
+
+<a name="references"></a>
+
+# References
+
+Puppet modules similar to this module:
+
+* [wikimedia/puppet-kafka](https://github.com/wikimedia/puppet-kafka) -- focuses on Debian as the target OS, and
+  apparently also supports Kafka mirroring and jmxtrans monitoring (the latter for sending JVM and Kafka broker metrics
+  to tools such as Ganglia or Graphite)
+
+The test setup of this module was derived from:
+
+* [puppet-module-skeleton](https://github.com/garethr/puppet-module-skeleton)
