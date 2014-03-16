@@ -22,6 +22,7 @@ Table of Contents
         * <a href="#manifests">Using Puppet manifests</a>
     * <a href="#service-management">Service management</a>
     * <a href="#log-files">Log files</a>
+* <a href="#development">Development</a>
 * <a href="#todo">TODO</a>
 * <a href="#changelog">Change log</a>
 * <a href="#contributing">Contributing</a>
@@ -261,6 +262,47 @@ _Note: The locations below may be different depending on the Storm RPM you are a
     * `/var/log/supervisor/storm-ui/storm-ui.out`
     * `/var/log/supervisor/storm-ui/storm-ui.err`
 * Supervisord main log file: `/var/log/supervisor/supervisord.log`
+
+
+<a name="development"></a>
+
+# Development
+
+It is recommended run the `bootstrap` script after a fresh checkout:
+
+    $ ./bootstrap
+
+You have access to a bunch of rake commands to help you with module development and testing:
+
+    $ bundle exec rake -T
+    rake acceptance          # Run acceptance tests
+    rake build               # Build puppet module package
+    rake clean               # Clean a built module package
+    rake coverage            # Generate code coverage information
+    rake help                # Display the list of available rake tasks
+    rake lint                # Check puppet manifests with puppet-lint / Run puppet-lint
+    rake module:bump         # Bump module version to the next minor
+    rake module:bump_commit  # Bump version and git commit
+    rake module:clean        # Runs clean again
+    rake module:push         # Push module to the Puppet Forge
+    rake module:release      # Release the Puppet module, doing a clean, build, tag, push, bump_commit and git push
+    rake module:tag          # Git tag with the current module version
+    rake spec                # Run spec tests in a clean fixtures directory
+    rake spec_clean          # Clean up the fixtures directory
+    rake spec_prep           # Create the fixtures directory
+    rake spec_standalone     # Run spec tests on an existing fixtures directory
+    rake syntax              # Syntax check Puppet manifests and templates
+    rake syntax:hiera        # Syntax check Hiera config files
+    rake syntax:manifests    # Syntax check Puppet manifests
+    rake syntax:templates    # Syntax check Puppet templates
+    rake test                # Run syntax, lint, and spec tests
+
+Of particular interest are:
+
+* `rake test` -- run syntax, lint, and spec tests
+* `rake syntax` -- to check you have valid Puppet and Ruby ERB syntax
+* `rake lint` -- checks against the [Puppet Style Guide](http://docs.puppetlabs.com/guides/style_guide.html)
+* `rake spec` -- run unit tests
 
 
 <a name="todo"></a>
