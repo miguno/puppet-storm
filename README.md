@@ -270,8 +270,7 @@ _Note: The locations below may be different depending on the Storm RPM you are a
 * Make configuring Storm more flexible by introducing a `$config_map` parameter, similar to how
   [puppet-kafka](https://github.com/miguno/puppet-kafka) works.
 * Enhance in-line documentation of Puppet manifests.
-* Add unit tests and specs.
-* Add Travis CI setup.
+* Add more unit tests and specs.
 
 
 <a name="changelog"></a>
