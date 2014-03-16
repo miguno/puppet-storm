@@ -57,6 +57,24 @@ describe 'storm' do
             'target' => '/var/log/storm',
           })}
 
+          it { should contain_file('/opt/storm/conf/storm.yaml').
+            with({
+              'ensure' => 'file',
+              'owner'  => 'root',
+              'group'  => 'root',
+              'mode'   => '0644',
+            }).
+            with_content(/^storm.zookeeper.servers:\n    - zookeeper1\n$/).
+            with_content(/^nimbus.host: "nimbus1"$/).
+            with_content(/^storm.local.dir: "\/app\/storm"$/).
+            with_content(/^nimbus.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
+            with_content(/^ui.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
+            with_content(/^supervisor.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
+            with_content(/^worker.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
+            with_content(/^supervisor.slots.ports:\n    - 6700\n    - 6701\n$/).
+            with_content(/^storm.messaging.transport: "backtype.storm.messaging.netty.Context"$/)
+          }
+
         end
 
         describe "storm class with disabled group management on #{osfamily}" do
