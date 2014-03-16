@@ -1,3 +1,5 @@
+# == Class storm
+#
 class storm(
   $command                 = $storm::params::command,
   $config                  = $storm::params::config,

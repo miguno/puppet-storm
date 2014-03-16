@@ -1,3 +1,5 @@
+# == Class storm::install
+#
 class storm::install inherits storm {
 
   if $group_manage == true {

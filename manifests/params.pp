@@ -1,3 +1,5 @@
+# == Class storm::params
+#
 class storm::params {
   $command                 = '/opt/storm/bin/storm'
   $config                  = '/opt/storm/conf/storm.yaml'

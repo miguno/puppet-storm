@@ -1,3 +1,5 @@
+# == Class storm::config
+#
 class storm::config inherits storm {
 
   file { $config:

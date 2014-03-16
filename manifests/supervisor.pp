@@ -1,7 +1,9 @@
+# == Class storm::supervisor
+#
 class storm::supervisor inherits storm {
 
   if !($service_ensure in ['present', 'absent']) {
-    fail("service_ensure parameter must be 'present' or 'absent'")
+    fail('service_ensure parameter must be "present" or "absent"')
   }
 
   if $service_manage == true {
