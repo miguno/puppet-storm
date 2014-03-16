@@ -75,6 +75,24 @@ describe 'storm' do
             with_content(/^storm.messaging.transport: "backtype.storm.messaging.netty.Context"$/)
           }
 
+          it { should contain_file('/opt/storm/logback/cluster.xml').
+            with({
+              'ensure' => 'file',
+              'owner'  => 'root',
+              'group'  => 'root',
+              'mode'   => '0644',
+            }).
+            with_content(/^### This file is managed by Puppet\.$/).
+            with_content(Regexp.new(Regexp.quote('<file>/var/log/storm/${logfile.name}</file>'))).
+            with_content(
+              Regexp.new(Regexp.quote('<fileNamePattern>/var/log/storm/${logfile.name}.%i</fileNamePattern>')
+            )).
+            with_content(/<file>\/var\/log\/storm\/access\.log<\/file>$/).
+            with_content(/<fileNamePattern>\/var\/log\/storm\/access\.log\.%i<\/fileNamePattern>$/).
+            with_content(/<file>\/var\/log\/storm\/metrics\.log<\/file>$/).
+            with_content(/<fileNamePattern>\/var\/log\/storm\/metrics\.log\.%i<\/fileNamePattern>$/)
+          }
+
         end
 
         describe "storm class with disabled group management on #{osfamily}" do
