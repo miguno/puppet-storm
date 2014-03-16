@@ -11,16 +11,16 @@ class storm::params {
   $logback                 = '/opt/storm/logback/cluster.xml'
   $logback_template        = 'storm/cluster.xml.erb'
   $nimbus_host             = 'nimbus1'
-  $nimbus_childopts        = "-Xmx256m -Djava.net.preferIPv4Stack=true"
+  $nimbus_childopts        = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $package_name            = 'storm'
   $package_ensure          = 'present'
   $service_autorestart     = true
   $service_enable          = true
   $service_ensure          = 'present'
   $service_manage          = true
-  $service_name_nimbus     = "storm-nimbus"
-  $service_name_supervisor = "storm-supervisor"
-  $service_name_ui         = "storm-ui"
+  $service_name_nimbus     = 'storm-nimbus'
+  $service_name_supervisor = 'storm-supervisor'
+  $service_name_ui         = 'storm-ui'
   $service_retries         = 999
   $service_startsecs       = 10
   $service_stderr_logfile_keep    = 10
@@ -29,16 +29,16 @@ class storm::params {
   $service_stdout_logfile_maxsize = '20MB'
   $shell                   = '/bin/bash'
   $storm_messaging_transport      = 'backtype.storm.messaging.netty.Context'
-  $supervisor_childopts    = "-Xmx256m -Djava.net.preferIPv4Stack=true"
+  $supervisor_childopts    = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $supervisor_slots_ports  = [6700, 6701]
-  $ui_childopts            = "-Xmx256m -Djava.net.preferIPv4Stack=true"
+  $ui_childopts            = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $uid                     = 53001
   $user                    = 'storm'
   $user_description        = 'Storm system account'
   $user_ensure             = 'present'
   $user_home               = '/home/storm'
   $user_managehome         = true
-  $worker_childopts        = "-Xmx256m -Djava.net.preferIPv4Stack=true"
+  $worker_childopts        = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $zookeeper_servers       = ['zookeeper1']
 
   # Parameters not exposed to the user via init.pp
