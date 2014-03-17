@@ -242,6 +242,12 @@ describe 'storm' do
           }
         end
 
+        describe "storm class with custom local hostname on #{osfamily}" do
+          let(:params) {{
+            :local_hostname  => 'foohost',
+          }}
+          it { should contain_file(default_configuration_file).with_content(/^storm\.local\.hostname: "foohost"$/) }
+        end
 
       end
     end
