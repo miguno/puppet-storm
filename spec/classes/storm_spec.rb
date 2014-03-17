@@ -163,6 +163,15 @@ describe 'storm' do
           }
         end
 
+        describe "storm class with custom nimbus host on #{osfamily}" do
+          let(:params) {{
+            :nimbus_host => 'master23',
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^nimbus\.host: "master23"$/)
+          }
+        end
+
         describe "storm class with disabled group management on #{osfamily}" do
           let(:params) {{
             :group_manage => false,
