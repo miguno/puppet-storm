@@ -9,6 +9,8 @@ describe 'storm' do
           :operatingsystem => operatingsystem,
         }}
 
+        default_configuration_file  = '/opt/storm/conf/storm.yaml'
+
         describe "storm class with default settings on #{osfamily}" do
           let(:params) {{ }}
           # We must mock $::operatingsystem because otherwise this test will
@@ -57,22 +59,22 @@ describe 'storm' do
             'target' => '/var/log/storm',
           })}
 
-          it { should contain_file('/opt/storm/conf/storm.yaml').
+          it { should contain_file(default_configuration_file).
             with({
               'ensure' => 'file',
               'owner'  => 'root',
               'group'  => 'root',
               'mode'   => '0644',
             }).
-            with_content(/^storm.zookeeper.servers:\n    - zookeeper1\n$/).
-            with_content(/^nimbus.host: "nimbus1"$/).
-            with_content(/^storm.local.dir: "\/app\/storm"$/).
-            with_content(/^nimbus.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
-            with_content(/^ui.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
-            with_content(/^supervisor.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
-            with_content(/^worker.childopts: "-Xmx256m -Djava.net.preferIPv4Stack=true"$/).
-            with_content(/^supervisor.slots.ports:\n    - 6700\n    - 6701\n$/).
-            with_content(/^storm.messaging.transport: "backtype.storm.messaging.netty.Context"$/)
+            with_content(/^storm\.zookeeper\.servers:\n    - zookeeper1\n$/).
+            with_content(/^nimbus\.host: "nimbus1"$/).
+            with_content(/^storm\.local\.dir: "\/app\/storm"$/).
+            with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^worker\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^supervisor\.slots\.ports:\n    - 6700\n    - 6701\n$/).
+            with_content(/^storm\.messaging\.transport: "backtype\.storm\.messaging\.netty\.Context"$/)
           }
 
           it { should contain_file('/opt/storm/logback/cluster.xml').
@@ -93,6 +95,24 @@ describe 'storm' do
             with_content(/<fileNamePattern>\/var\/log\/storm\/metrics\.log\.%i<\/fileNamePattern>$/)
           }
 
+        end
+
+        describe "storm class with three ZooKeeper servers on #{osfamily}" do
+          let(:params) {{
+            :zookeeper_servers => ['zookeeper1', 'zkserver2', 'zkserver3'],
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^storm\.zookeeper\.servers:\n    - zookeeper1\n    - zkserver2\n    - zkserver3\n$/)
+          }
+        end
+
+        describe "storm class with messaging backend set to ZeroMQ on #{osfamily}" do
+          let(:params) {{
+            :storm_messaging_transport => 'backtype.storm.messaging.zmq',
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^storm\.messaging\.transport: "backtype\.storm\.messaging\.zmq"$/)
+          }
         end
 
         describe "storm class with disabled group management on #{osfamily}" do
