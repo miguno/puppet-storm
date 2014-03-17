@@ -222,6 +222,27 @@ describe 'storm' do
           it { should_not contain_user('storm') }
         end
 
+        describe "storm class with custom local directory on #{osfamily}" do
+          let(:params) {{
+            :local_dir => '/var/lib/storm',
+          }}
+
+          it { should contain_file('/var/lib/storm').with({
+            'ensure'       => 'directory',
+            'owner'        => 'storm',
+            'group'        => 'storm',
+            'mode'         => '0750',
+            'recurse'      => true,
+            'recurselimit' => 0,
+          })}
+          it { should_not contain_file('/app/storm') }
+
+          it { should contain_file(default_configuration_file).
+            with_content(/^storm\.local\.dir: "\/var\/lib\/storm"$/)
+          }
+        end
+
+
       end
     end
   end
