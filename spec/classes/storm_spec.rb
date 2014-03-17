@@ -115,6 +115,54 @@ describe 'storm' do
           }
         end
 
+        describe "storm class with custom nimbus childopts on #{osfamily}" do
+          let(:params) {{
+            :nimbus_childopts => '-Xmx1024m -Xms512m',
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^nimbus\.childopts: "-Xmx1024m -Xms512m"$/).
+            with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^worker\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/)
+          }
+        end
+
+        describe "storm class with custom supervisor childopts on #{osfamily}" do
+          let(:params) {{
+            :supervisor_childopts => '-Xmx1024m -Xms512m',
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^supervisor\.childopts: "-Xmx1024m -Xms512m"$/).
+            with_content(/^worker\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/)
+          }
+        end
+
+        describe "storm class with custom ui childopts on #{osfamily}" do
+          let(:params) {{
+            :ui_childopts => '-Xmx1024m -Xms512m',
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^ui\.childopts: "-Xmx1024m -Xms512m"$/).
+            with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^worker\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/)
+          }
+        end
+
+        describe "storm class with custom worker childopts on #{osfamily}" do
+          let(:params) {{
+            :worker_childopts => '-Xmx1024m -Xms512m',
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^worker\.childopts: "-Xmx1024m -Xms512m"$/)
+          }
+        end
+
         describe "storm class with disabled group management on #{osfamily}" do
           let(:params) {{
             :group_manage => false,
