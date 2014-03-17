@@ -106,6 +106,14 @@ describe 'storm' do
           }
         end
 
+        describe "storm class with zookeeper servers set to a string instead of an array on #{osfamily}" do
+          let(:params) {{
+            :zookeeper_servers => 'zookeeper1',
+          }}
+          it { expect { should contain_class('storm') }.
+            to raise_error(Puppet::Error, /"zookeeper1" is not an Array.  It looks to be a String/) }
+        end
+
         describe "storm class with messaging backend set to ZeroMQ on #{osfamily}" do
           let(:params) {{
             :storm_messaging_transport => 'backtype.storm.messaging.zmq',
@@ -170,6 +178,23 @@ describe 'storm' do
           it { should contain_file(default_configuration_file).
             with_content(/^nimbus\.host: "master23"$/)
           }
+        end
+
+        describe "storm class with custom supervisor slots ports on #{osfamily}" do
+          let(:params) {{
+            :supervisor_slots_ports => [1000, 2000, 3000, 4000],
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^supervisor\.slots\.ports:\n    - 1000\n    - 2000\n    - 3000\n    - 4000\n$/)
+          }
+        end
+
+        describe "storm class with supervisor slots ports set to a number instead of an array on #{osfamily}" do
+          let(:params) {{
+            :supervisor_slots_ports => 6700,
+          }}
+          it { expect { should contain_class('storm') }.
+            to raise_error(Puppet::Error, /"6700" is not an Array.  It looks to be a String/) }
         end
 
         describe "storm class with disabled group management on #{osfamily}" do
