@@ -1,7 +1,7 @@
 # puppet-storm [![Build Status](https://travis-ci.org/miguno/puppet-storm.png?branch=master)](https://travis-ci.org/miguno/puppet-storm)
 
-Wirbelsturm-compatible [Puppet](http://puppetlabs.com/) module to deploy [Storm](http://storm.incubator.apache.org/)
-0.9+ clusters.
+[Wirbelsturm](https://github.com/miguno/wirbelsturm)-compatible [Puppet](http://puppetlabs.com/) module to deploy
+[Storm](http://storm.incubator.apache.org/) 0.9+ clusters.
 
 You can use this Puppet module to deploy Storm to physical and virtual machines, for instance via your existing
 internal or cloud-based Puppet infrastructure and via a tool such as [Vagrant](http://www.vagrantup.com/) for local
