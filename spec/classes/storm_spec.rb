@@ -69,6 +69,7 @@ describe 'storm' do
             with_content(/^storm\.zookeeper\.servers:\n    - zookeeper1\n$/).
             with_content(/^nimbus\.host: "nimbus1"$/).
             with_content(/^storm\.local\.dir: "\/app\/storm"$/).
+            with_content(/^logviewer\.childopts: "-Xmx128m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
@@ -123,11 +124,25 @@ describe 'storm' do
           }
         end
 
+        describe "storm class with custom logviewer childopts on #{osfamily}" do
+          let(:params) {{
+            :logviewer_childopts => '-Xmx512m -Xms512m',
+          }}
+          it { should contain_file(default_configuration_file).
+            with_content(/^logviewer\.childopts: "-Xmx512m -Xms512m"$/).
+            with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
+            with_content(/^worker\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/)
+          }
+        end
+
         describe "storm class with custom nimbus childopts on #{osfamily}" do
           let(:params) {{
             :nimbus_childopts => '-Xmx1024m -Xms512m',
           }}
           it { should contain_file(default_configuration_file).
+            with_content(/^logviewer\.childopts: "-Xmx128m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^nimbus\.childopts: "-Xmx1024m -Xms512m"$/).
             with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
@@ -140,6 +155,7 @@ describe 'storm' do
             :supervisor_childopts => '-Xmx1024m -Xms512m',
           }}
           it { should contain_file(default_configuration_file).
+            with_content(/^logviewer\.childopts: "-Xmx128m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^supervisor\.childopts: "-Xmx1024m -Xms512m"$/).
@@ -152,6 +168,7 @@ describe 'storm' do
             :ui_childopts => '-Xmx1024m -Xms512m',
           }}
           it { should contain_file(default_configuration_file).
+            with_content(/^logviewer\.childopts: "-Xmx128m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^ui\.childopts: "-Xmx1024m -Xms512m"$/).
             with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
@@ -164,6 +181,7 @@ describe 'storm' do
             :worker_childopts => '-Xmx1024m -Xms512m',
           }}
           it { should contain_file(default_configuration_file).
+            with_content(/^logviewer\.childopts: "-Xmx128m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^nimbus\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^ui\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).
             with_content(/^supervisor\.childopts: "-Xmx256m -Djava\.net\.preferIPv4Stack=true"$/).

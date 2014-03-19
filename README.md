@@ -137,12 +137,13 @@ Then use librarian-puppet to install (or update) the Puppet modules.
 A "full" single-node example that includes the deployment of [supervisord](http://www.supervisord.org/) via
 [puppet-supervisor](https://github.com/miguno/puppet-supervisor) and
 [ZooKeeper](http://zookeeper.apache.org/) via [puppet-zookeeper](https://github.com/miguno/puppet-zookeeper).
-Here, both ZooKeeper and Storm (Nimbus, Supervisor, UI) are running on the same machine called `stormsingle1`.
-That's a nice setup for your local development laptop or CI server, for instance.
+Here, both ZooKeeper and Storm (Logviewer, Nimbus, Supervisor, UI) are running on the same machine called
+`stormsingle1`.  That's a nice setup for your local development laptop or CI server, for instance.
 
 ```yaml
 ---
 classes:
+  - storm::logviewer
   - storm::nimbus
   - storm::supervisor
   - storm::ui
@@ -152,6 +153,7 @@ classes:
 # Custom Storm settings
 storm::zookeeper_servers:
   - 'stormsingle1'
+storm::logviewer_childopts:  '-Xmx128m -Djava.net.preferIPv4Stack=true'
 storm::nimbus_host: 'stormsingle1'
 storm::nimbus_childopts:     '-Xmx256m -Djava.net.preferIPv4Stack=true'
 storm::ui_childopts:         '-Xmx256m -Djava.net.preferIPv4Stack=true'
@@ -201,12 +203,14 @@ Storm slave node example:
 ```yaml
 ---
 classes:
+  - storm::logviewer
   - storm::supervisor
   - supervisor
 
 ## Custom Storm settings
 storm::zookeeper_servers:
   - 'zookeeper1'
+storm::logviewer_childopts:  '-Xmx128m -Djava.net.preferIPv4Stack=true'
 storm::nimbus_host: 'nimbus1'
 storm::supervisor_childopts: '-Xmx256m  -Djava.net.preferIPv4Stack=true'
 storm::worker_childopts:     '-Xmx1024m -Djava.net.preferIPv4Stack=true'
@@ -243,6 +247,7 @@ To manually start, stop, restart, or check the status of the Storm daemons, resp
 Example:
 
     $ sudo supervisorctl status
+    storm-logviewer                  RUNNING    pid 7491, uptime 0:05:17
     storm-nimbus                     RUNNING    pid 7491, uptime 0:05:12
     storm-ui                         RUNNING    pid 7421, uptime 0:05:26
     storm-supervisor                 RUNNING    pid 7507, uptime 0:05:03
@@ -310,6 +315,7 @@ Of particular interest are:
 
 # TODO
 
+* Restrict disk space used by logviewer log files.
 * Make configuring Storm more flexible by introducing a `$config_map` parameter, similar to how
   [puppet-kafka](https://github.com/miguno/puppet-kafka) works.
 * Enhance in-line documentation of Puppet manifests.

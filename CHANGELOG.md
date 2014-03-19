@@ -1,5 +1,13 @@
 # Change log
 
+## 1.0.5 (March 19, 2014)
+
+IMPROVEMENTS
+
+* Add basic support for running the [logviewer](http://storm.incubator.apache.org/2013/12/08/storm090-released.html)
+  daemon.
+
+
 ## 1.0.4 (March 17, 2014)
 
 IMPROVEMENTS

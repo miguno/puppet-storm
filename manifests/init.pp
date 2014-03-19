@@ -13,6 +13,7 @@ class storm(
   $log_dir                 = $storm::params::log_dir,
   $logback                 = $storm::params::logback,
   $logback_template        = $storm::params::logback_template,
+  $logviewer_childopts     = $storm::params::logviewer_childopts,
   $nimbus_host             = $storm::params::nimbus_host,
   $nimbus_childopts        = $storm::params::nimbus_childopts,
   $package_name            = $storm::params::package_name,
@@ -21,6 +22,7 @@ class storm(
   $service_enable          = hiera('storm::service_enable', $storm::params::service_enable),
   $service_ensure          = $storm::params::service_ensure,
   $service_manage          = hiera('storm::service_manage', $storm::params::service_manage),
+  $service_name_logviewer  = $storm::params::service_name_logviewer,
   $service_name_nimbus     = $storm::params::service_name_nimbus,
   $service_name_supervisor = $storm::params::service_name_supervisor,
   $service_name_ui         = $storm::params::service_name_ui,
@@ -58,6 +60,7 @@ class storm(
   validate_absolute_path($log_dir)
   validate_absolute_path($logback)
   validate_string($logback_template)
+  validate_string($logviewer_childopts)
   validate_string($nimbus_host)
   validate_string($nimbus_childopts)
   validate_string($package_name)
@@ -66,6 +69,7 @@ class storm(
   validate_bool($service_enable)
   validate_string($service_ensure)
   validate_bool($service_manage)
+  validate_string($service_name_logviewer)
   validate_string($service_name_nimbus)
   validate_string($service_name_supervisor)
   validate_string($service_name_ui)
