@@ -1,5 +1,14 @@
 # Change log
 
+## 1.0.7 (March 21, 2014)
+
+* Add input validation for `$service_environment` parameter.
+
+BUG FIXES
+
+* Fix unit tests for `$service_environment` parameter.
+
+
 ## 1.0.6 (March 21, 2014)
 
 IMPROVEMENTS
