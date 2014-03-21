@@ -192,6 +192,8 @@ storm::zookeeper_servers:
 storm::nimbus_host: 'nimbus1'
 storm::nimbus_childopts:     '-Xmx1024m -Djava.net.preferIPv4Stack=true'
 storm::ui_childopts:         '-Xmx512m  -Djava.net.preferIPv4Stack=true'
+# Add shell environment variables to the environment of the Nimbus process
+storm::nimbus::service_environment: 'FOO="bar",HELLO="world"'
 
 ## Custom supervisord settings (note: this is supervisord, not Storm's Supervisor daemon)
 supervisor::logfile_maxbytes: '20MB'
