@@ -12,6 +12,8 @@ class storm::nimbus(
   $service_environment = '',
 ) inherits storm {
 
+  validate_string($service_environment)
+
   if !($service_ensure in ['present', 'absent']) {
     fail('service_ensure parameter must be "present" or "absent"')
   }
