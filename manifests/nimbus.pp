@@ -1,6 +1,16 @@
 # == Class storm::nimbus
 #
-class storm::nimbus inherits storm {
+# === Parameters
+#
+# [*service_environment*]
+#   Configures the `environment` setting of the supervisord service.
+#   A comma-separted string of key/value pairs for environment variables in the form 'KEY="val",KEY2="val2"' that will
+#   be placed in the supervisord process' environment (and as a result in all of its child process' environments).
+#   Example: 'FOO="bar",HELLO="world"' sets the environment variables `FOO` and `HELLO` to "bar" and "world",
+#   respectively.
+class storm::nimbus(
+  $service_environment = '',
+) inherits storm {
 
   if !($service_ensure in ['present', 'absent']) {
     fail('service_ensure parameter must be "present" or "absent"')
@@ -14,6 +24,7 @@ class storm::nimbus inherits storm {
         enable                 => $service_enable,
         command                => "${command} nimbus",
         directory              => '/',
+        environment            => "${service_environment}",
         user                   => $user,
         group                  => $group,
         autorestart            => $service_autorestart,

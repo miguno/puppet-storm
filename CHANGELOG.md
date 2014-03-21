@@ -1,5 +1,15 @@
 # Change log
 
+## 1.0.6 (March 21, 2014)
+
+IMPROVEMENTS
+
+* The classes `storm::{logviewer,nimbus,supervisor,ui}` each support the class parameter `$service_environment`.  This
+  parameter adds environment variables to their respective supervisord service via the `environment` setting of
+  supervisord.  Example: `storm::nimbus::service_environment: 'FOO="bar",HELLO="world"'`.  See `environment` in
+  [Supervisord section values](http://www.supervisord.org/configuration.html#supervisord-section-values).
+
+
 ## 1.0.5 (March 19, 2014)
 
 IMPROVEMENTS

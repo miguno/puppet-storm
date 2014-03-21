@@ -19,6 +19,7 @@ describe 'storm::ui' do
             'enable'      => true,
             'command'     => '/opt/storm/bin/storm ui',
             'directory'   => '/',
+            'environment' => ',',
             'user'        => 'storm',
             'group'       => 'storm',
             'autorestart' => true,
@@ -29,6 +30,16 @@ describe 'storm::ui' do
             'stderr_logfile_maxsize' => '20MB',
             'stderr_logfile_keep'    => 10,
             'require'     => [ 'Class[Storm::Config]', 'Class[Supervisor]' ],
+          })}
+        end
+
+        describe "storm ui with custom environment on #{osfamily}" do
+          let(:params) {{
+            :service_environment => 'FOOVAR=BARVALUE,hello=world',
+          }}
+
+          it { should contain_supervisor__service('storm-ui').with({
+            'environment' => 'FOOVAR=BARVALUE,hello=world,',
           })}
         end
 

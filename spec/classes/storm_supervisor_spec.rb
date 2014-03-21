@@ -19,6 +19,7 @@ describe 'storm::supervisor' do
             'enable'      => true,
             'command'     => '/opt/storm/bin/storm supervisor',
             'directory'   => '/',
+            'environment' => ',',
             'user'        => 'storm',
             'group'       => 'storm',
             'autorestart' => true,
@@ -30,6 +31,16 @@ describe 'storm::supervisor' do
             'stderr_logfile_maxsize' => '20MB',
             'stderr_logfile_keep'    => 10,
             'require'     => [ 'Class[Storm::Config]', 'Class[Supervisor]' ],
+          })}
+        end
+
+        describe "storm supervisor with custom environment on #{osfamily}" do
+          let(:params) {{
+            :service_environment => 'FOOVAR=BARVALUE,hello=world',
+          }}
+
+          it { should contain_supervisor__service('storm-supervisor').with({
+            'environment' => 'FOOVAR=BARVALUE,hello=world,',
           })}
         end
 
