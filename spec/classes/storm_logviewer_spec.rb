@@ -19,7 +19,7 @@ describe 'storm::logviewer' do
             'enable'      => true,
             'command'     => '/opt/storm/bin/storm logviewer',
             'directory'   => '/',
-            'environment' => ',',
+            'environment' => '',
             'user'        => 'storm',
             'group'       => 'storm',
             'autorestart' => true,
@@ -39,7 +39,7 @@ describe 'storm::logviewer' do
           }}
 
           it { should contain_supervisor__service('storm-logviewer').with({
-            'environment' => 'FOOVAR=BARVALUE,hello=world,',
+            'environment' => 'FOOVAR=BARVALUE,hello=world',
           })}
         end
 

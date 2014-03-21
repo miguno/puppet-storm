@@ -19,7 +19,7 @@ describe 'storm::supervisor' do
             'enable'      => true,
             'command'     => '/opt/storm/bin/storm supervisor',
             'directory'   => '/',
-            'environment' => ',',
+            'environment' => '',
             'user'        => 'storm',
             'group'       => 'storm',
             'autorestart' => true,
@@ -40,7 +40,7 @@ describe 'storm::supervisor' do
           }}
 
           it { should contain_supervisor__service('storm-supervisor').with({
-            'environment' => 'FOOVAR=BARVALUE,hello=world,',
+            'environment' => 'FOOVAR=BARVALUE,hello=world',
           })}
         end
 

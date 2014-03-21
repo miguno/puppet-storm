@@ -19,7 +19,7 @@ describe 'storm::nimbus' do
             'enable'      => true,
             'command'     => '/opt/storm/bin/storm nimbus',
             'directory'   => '/',
-            'environment' => ',',
+            'environment' => '',
             'user'        => 'storm',
             'group'       => 'storm',
             'autorestart' => true,
@@ -40,7 +40,7 @@ describe 'storm::nimbus' do
           }}
 
           it { should contain_supervisor__service('storm-nimbus').with({
-            'environment' => 'FOOVAR=BARVALUE,hello=world,',
+            'environment' => 'FOOVAR=BARVALUE,hello=world',
           })}
         end
 
