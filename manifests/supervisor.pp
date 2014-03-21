@@ -24,7 +24,7 @@ class storm::supervisor(
         enable                 => $service_enable,
         command                => "${command} supervisor",
         directory              => '/',
-        environment            => "${service_environment}",
+        environment            => $service_environment,
         user                   => $user,
         group                  => $group,
         autorestart            => $service_autorestart,

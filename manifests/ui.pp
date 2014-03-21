@@ -24,7 +24,7 @@ class storm::ui(
         enable                 => $service_enable,
         command                => "${command} ui",
         directory              => '/',
-        environment            => "${service_environment}",
+        environment            => $service_environment,
         user                   => $user,
         group                  => $group,
         autorestart            => $service_autorestart,

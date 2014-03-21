@@ -24,7 +24,7 @@ class storm::nimbus(
         enable                 => $service_enable,
         command                => "${command} nimbus",
         directory              => '/',
-        environment            => "${service_environment}",
+        environment            => $service_environment,
         user                   => $user,
         group                  => $group,
         autorestart            => $service_autorestart,

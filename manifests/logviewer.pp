@@ -24,7 +24,7 @@ class storm::logviewer(
         enable                 => $service_enable,
         command                => "${command} logviewer",
         directory              => '/',
-        environment            => "${service_environment}",
+        environment            => $service_environment,
         user                   => $user,
         group                  => $group,
         autorestart            => $service_autorestart,
