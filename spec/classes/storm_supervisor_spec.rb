@@ -12,6 +12,7 @@ describe 'storm::supervisor' do
         describe "storm supervisor with default settings on #{osfamily}" do
           let(:params) {{ }}
 
+          it { should compile.with_all_deps }
           it { should contain_class('storm::supervisor') }
 
           it { should contain_supervisor__service('storm-supervisor').with({

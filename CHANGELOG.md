@@ -1,5 +1,12 @@
 # Change log
 
+## 1.0.8 (March 24, 2014)
+
+IMPROVEMENTS
+
+* Add `compile` test to `storm::logviewer`, `storm::nimbus`, `storm::supervisor`, `storm::ui`.
+
+
 ## 1.0.7 (March 21, 2014)
 
 * Add input validation for `$service_environment` parameter.

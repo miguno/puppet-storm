@@ -12,6 +12,7 @@ describe 'storm::ui' do
         describe "storm ui with default settings on #{osfamily}" do
           let(:params) {{ }}
 
+          it { should compile.with_all_deps }
           it { should contain_class('storm::ui') }
 
           it { should contain_supervisor__service('storm-ui').with({

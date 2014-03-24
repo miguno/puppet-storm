@@ -12,6 +12,7 @@ describe 'storm::nimbus' do
         describe "storm nimbus with default settings on #{osfamily}" do
           let(:params) {{ }}
 
+          it { should compile.with_all_deps }
           it { should contain_class('storm::nimbus') }
 
           it { should contain_supervisor__service('storm-nimbus').with({
