@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 group :test do
-  # Rake 10.2.x requires Ruby >= 1.9
+  # Rake 10.2.0+ requires Ruby >= 1.9
   gem 'rake', '< 10.2.0' if RUBY_VERSION < '1.9.0'
   gem 'puppet', ENV['PUPPET_VERSION'] || '~> 3.0.1'
   gem 'puppet-lint'
