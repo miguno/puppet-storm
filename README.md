@@ -322,6 +322,7 @@ Of particular interest are:
   [puppet-kafka](https://github.com/miguno/puppet-kafka) works.
 * Enhance in-line documentation of Puppet manifests.
 * Add more unit tests and specs.
+* Add rollback/remove functionality to complete purge Storm related packages and configuration files from a machine.
 
 
 <a name="changelog"></a>
