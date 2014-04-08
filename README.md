@@ -96,6 +96,14 @@ Puppet setup.
 Add the following lines to your `Puppetfile`:
 
 ```
+# Add the stdlib dependency as hosted on public Puppet Forge.
+#
+# We intentionally do not include the stdlib dependency in our Modulefile to make it easier for users who decided to
+# use internal copies of stdlib so that their deployments are not coupled to the availability of PuppetForge.  While
+# there are tools such as puppet-library for hosting internal forges or for proxying to the public forge, not everyone
+# is actually using those tools.
+mod 'puppetlabs/stdlib'
+
 # Add the puppet-storm module
 mod 'storm',
   :git => 'https://github.com/miguno/puppet-storm.git'
