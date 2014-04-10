@@ -3,6 +3,7 @@
 class storm(
   $command                 = $storm::params::command,
   $config                  = $storm::params::config,
+  $config_map              = $storm::params::config_map,
   $config_template         = $storm::params::config_template,
   $gid                     = $storm::params::gid,
   $group                   = $storm::params::group,
@@ -50,6 +51,7 @@ class storm(
 
   validate_string($command)
   validate_absolute_path($config)
+  validate_hash($config_map)
   validate_string($config_template)
   if !is_integer($gid) { fail('The $gid parameter must be an integer number') }
   validate_string($group)

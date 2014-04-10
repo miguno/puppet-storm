@@ -2,7 +2,8 @@
 
 ## 1.0.10 (unreleased)
 
-* TBD
+* Support `$config_map` parameter.  This parameter, whose value must be a hash, will be converted into a YAML fragment
+  that will be appended to the end of the Storm configuration file (`storm.yaml`).
 
 
 ## 1.0.9 (April 08, 2014)

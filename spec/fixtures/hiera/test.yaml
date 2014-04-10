@@ -1,0 +1,7 @@
+---
+storm::config_map:
+  nimbus.cleanup.inbox.freq.secs: 777
+  nimbus.monitor.freq.secs: 33
+  topology.kryo.register:
+    - org.mycompany.MyFirstType
+    - org.mycompany.MySecondType: org.mycompany.MySecondTypeSerializer

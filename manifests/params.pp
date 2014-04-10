@@ -3,6 +3,7 @@
 class storm::params {
   $command                 = '/opt/storm/bin/storm'
   $config                  = '/opt/storm/conf/storm.yaml'
+  $config_map              = {}
   $config_template         = 'storm/storm.yaml.erb'
   $gid                     = 53001
   $group                   = 'storm'

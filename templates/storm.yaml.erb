@@ -4,7 +4,7 @@
 
 storm.zookeeper.servers:
 <% for @zkserver in @zookeeper_servers -%>
-    - <%= @zkserver %>
+  - <%= @zkserver %>
 <% end -%>
 
 nimbus.host: "<%= @nimbus_host %>"
@@ -22,7 +22,7 @@ worker.childopts: "<%= @worker_childopts %>"
 # Each worker is assigned a port to use for communication.
 supervisor.slots.ports:
 <% @supervisor_slots_ports.each do |port| -%>
-    - <%= port %>
+  - <%= port %>
 <% end -%>
 
 # Messaging backend for inter-task communication
@@ -34,3 +34,16 @@ supervisor.slots.ports:
 #                 Then set `storm.messaging.transport` to "backtype.storm.messaging.zmq".
 #
 storm.messaging.transport: "<%= @storm_messaging_transport %>"
+
+<%=
+  require 'yaml'
+  @config_map.to_yaml.lines.
+    select { |s| s =~ /^[^-]{3}/ }.
+    map { |s| s.sub(/^  /, '').rstrip }.
+    join("\n")
+
+  # Due to a Puppet/rspec-puppet bug we unfortunately cannot put the hash-to-YAML-fragment conversion into a custom
+  # Puppet function under lib/puppet/parser/functions/, and unit test that function in isolation.  The problem is that
+  # as soon as we create a lib/ folder running rspec-puppet via e.g. `rake test` will fail, complaining about not
+  # finding e.g. `validate_absolute_path` of puppetlabs/stdlib.  It looks as if this bug only affects Puppet 3.0.x.
+-%>
