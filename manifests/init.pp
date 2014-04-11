@@ -1,5 +1,13 @@
 # == Class storm
 #
+# === Parameters
+#
+# TODO: Document each class parameter.
+#
+# [*config_map*]
+#   Use this parameter for all other Storm related config options except those that are already exposed as class
+#   parameters (e.g. `$nimbus_host`, `$local_dir`, `$local_hostname`, `$worker_childopts`).
+#
 class storm(
   $command                 = $storm::params::command,
   $config                  = $storm::params::config,

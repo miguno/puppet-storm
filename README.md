@@ -125,6 +125,11 @@ Then use librarian-puppet to install (or update) the Puppet modules.
   self-explanatory.
 * See [params.pp](manifests/params.pp) for the default values of those configuration parameters.
 
+Of special note is the class parameter `$config_map`:  You can use this parameter to "inject" arbitrary Storm config
+settings via Hiera/YAML into the Storm configuration file (default name: `storm.yaml`).  However you should not
+re-define config settings via `$config_map` that already have explicit Puppet class parameters (such as `$nimbus_host`,
+`$worker_childopts`).  See the examples below for more information on `$config_map` usage.
+
 
 <a name="usage"></a>
 
@@ -171,6 +176,15 @@ storm::worker_childopts:     '-Xmx256m -Djava.net.preferIPv4Stack=true'
 storm::supervisor_slots_ports:
   - 6700
   - 6701
+storm::storm_messaging_transport: "backtype.storm.messaging.netty.Context"
+storm::config_map:
+  nimbus.thrift.threads: 12
+  storm.messaging.netty.server_worker_threads: 1
+  storm.messaging.netty.client_worker_threads: 1
+  storm.messaging.netty.buffer_size: 5242880
+  storm.messaging.netty.max_retries: 100
+  storm.messaging.netty.max_wait_ms: 1000
+  storm.messaging.netty.min_wait_ms: 100
 ```
 
 Of course you can (and normally will) use multiple Storm nodes.  Here, you will typically run Storm Nimbus and Storm UI
@@ -311,8 +325,6 @@ Of particular interest are:
 # TODO
 
 * Restrict disk space used by logviewer log files.
-* Make configuring Storm more flexible by introducing a `$config_map` parameter, similar to how
-  [puppet-kafka](https://github.com/miguno/puppet-kafka) works.
 * Enhance in-line documentation of Puppet manifests.
 * Add more unit tests and specs.
 * Add rollback/remove functionality to complete purge Storm related packages and configuration files from a machine.
