@@ -171,14 +171,6 @@ storm::worker_childopts:     '-Xmx256m -Djava.net.preferIPv4Stack=true'
 storm::supervisor_slots_ports:
   - 6700
   - 6701
-
-## Custom supervisord settings (note: this is supervisord, not Storm's Supervisor daemon)
-supervisor::logfile_maxbytes: '20MB'
-supervisor::logfile_backups: 5
-
-## Custom ZooKeeper settings
-zookeeper::autopurge_snap_retain_count: 3
-zookeeper::max_client_connections: 500
 ```
 
 Of course you can (and normally will) use multiple Storm nodes.  Here, you will typically run Storm Nimbus and Storm UI
@@ -203,10 +195,6 @@ storm::nimbus_childopts:     '-Xmx1024m -Djava.net.preferIPv4Stack=true'
 storm::ui_childopts:         '-Xmx512m  -Djava.net.preferIPv4Stack=true'
 # Add shell environment variables to the environment of the Nimbus process
 storm::nimbus::service_environment: 'FOO="bar",HELLO="world"'
-
-## Custom supervisord settings (note: this is supervisord, not Storm's Supervisor daemon)
-supervisor::logfile_maxbytes: '20MB'
-supervisor::logfile_backups: 5
 ```
 
 Storm slave node example:
@@ -230,10 +218,6 @@ storm::supervisor_slots_ports:
   - 6701
   - 6702
   - 6703
-
-## Custom supervisord settings (note: this is supervisord, not Storm's Supervisor daemon)
-supervisor::logfile_maxbytes: '20MB'
-supervisor::logfile_backups: 5
 ```
 
 
