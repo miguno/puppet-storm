@@ -327,7 +327,7 @@ Of particular interest are:
 * Restrict disk space used by logviewer log files.
 * Enhance in-line documentation of Puppet manifests.
 * Add more unit tests and specs.
-* Add rollback/remove functionality to complete purge Storm related packages and configuration files from a machine.
+* Add rollback/remove functionality to completely purge Storm related packages and configuration files from a machine.
 
 
 <a name="changelog"></a>
