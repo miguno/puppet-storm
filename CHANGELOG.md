@@ -1,5 +1,19 @@
 # Change log
 
+## 1.0.11 (April 24, 2014)
+
+IMPROVEMENTS
+
+* Move user/group management into a separate Puppet class `storm::users` to enforce correct resource ordering
+  regardless of whether the module should or should not manage the user/group.  This way we can make sure that the user
+  and group are available before we set permissions on files and directories.
+
+BACKWARDS INCOMPATIBILITIES
+
+* Remove the `$group_manage` parameter.  The `$user_manage` parameter now enables/disables both the user and the group
+  management.
+
+
 ## 1.0.10 (April 11, 2014)
 
 IMPROVEMENTS

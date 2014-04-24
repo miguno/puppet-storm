@@ -8,7 +8,6 @@ class storm::params {
   $gid                     = 53001
   $group                   = 'storm'
   $group_ensure            = 'present'
-  $group_manage            = true
   $local_dir               = '/app/storm'
   $local_hostname          = $::hostname
   $log_dir                 = '/var/log/storm'

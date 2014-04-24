@@ -2,26 +2,6 @@
 #
 class storm::install inherits storm {
 
-  if $group_manage == true {
-    group { $group:
-      ensure => $group_ensure,
-      gid    => $gid,
-    }
-  }
-
-  if $user_manage == true {
-    user { $user:
-      ensure     => $user_ensure,
-      home       => $user_home,
-      shell      => $shell,
-      uid        => $uid,
-      comment    => $user_description,
-      gid        => $group,
-      managehome => $user_managehome,
-      require    => Group[$group],
-    }
-  }
-
   package { 'storm':
     ensure  => $package_ensure,
     name    => $package_name,

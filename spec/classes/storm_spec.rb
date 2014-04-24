@@ -20,6 +20,7 @@ describe 'storm' do
             it { should compile.with_all_deps }
 
             it { should contain_class('storm::params') }
+            it { should contain_class('storm::users').that_comes_before('storm::install') }
             it { should contain_class('storm::install').that_comes_before('storm::config') }
             it { should contain_class('storm::config') }
 
@@ -217,29 +218,42 @@ describe 'storm' do
               to raise_error(Puppet::Error, /"6700" is not an Array.  It looks to be a String/) }
           end
 
-          describe "storm class with disabled group management on #{osfamily}" do
-            let(:params) {{
-              :group_manage => false,
-            }}
-            it { should_not contain_group('storm') }
-            it { should contain_user('storm') }
-          end
-
           describe "storm class with disabled user management on #{osfamily}" do
             let(:params) {{
               :user_manage  => false,
             }}
-            it { should contain_group('storm') }
+            it { should_not contain_group('storm') }
             it { should_not contain_user('storm') }
           end
 
-          describe "storm class with disabled user and group management on #{osfamily}" do
+          describe "storm class with custom user and group on #{osfamily}" do
             let(:params) {{
-              :group_manage => false,
-              :user_manage  => false,
+              :user_manage      => true,
+              :gid              => 456,
+              :group            => 'stormgroup',
+              :uid              => 123,
+              :user             => 'stormuser',
+              :user_description => 'Apache Storm user',
+              :user_home        => '/home/stormuser',
             }}
+
             it { should_not contain_group('storm') }
             it { should_not contain_user('storm') }
+
+            it { should contain_user('stormuser').with({
+              'ensure'     => 'present',
+              'home'       => '/home/stormuser',
+              'shell'      => '/bin/bash',
+              'uid'        => 123,
+              'comment'    => 'Apache Storm user',
+              'gid'        => 'stormgroup',
+              'managehome' => true,
+            })}
+
+            it { should contain_group('stormgroup').with({
+              'ensure'     => 'present',
+              'gid'        => 456,
+            })}
           end
 
           describe "storm class with custom local directory on #{osfamily}" do

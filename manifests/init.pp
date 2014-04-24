@@ -16,7 +16,6 @@ class storm(
   $gid                     = $storm::params::gid,
   $group                   = $storm::params::group,
   $group_ensure            = $storm::params::group_ensure,
-  $group_manage            = hiera('storm::group_manage', $storm::params::group_manage),
   $local_dir               = $storm::params::local_dir,
   $local_hostname          = $storm::params::local_hostname,
   $log_dir                 = $storm::params::log_dir,
@@ -64,7 +63,6 @@ class storm(
   if !is_integer($gid) { fail('The $gid parameter must be an integer number') }
   validate_string($group)
   validate_string($group_ensure)
-  validate_bool($group_manage)
   validate_absolute_path($local_dir)
   validate_string($local_hostname)
   validate_absolute_path($log_dir)
@@ -108,6 +106,7 @@ class storm(
   validate_string($worker_childopts)
   validate_array($zookeeper_servers)
 
+  include '::storm::users'
   include '::storm::install'
   include '::storm::config'
 
@@ -117,5 +116,9 @@ class storm(
   anchor { 'storm::begin': }
   anchor { 'storm::end': }
 
-  Anchor['storm::begin'] -> Class['::storm::install'] -> Class['::storm::config'] -> Anchor['storm::end']
+  Anchor['storm::begin']
+  -> Class['::storm::users']
+  -> Class['::storm::install']
+  -> Class['::storm::config']
+  -> Anchor['storm::end']
 }
