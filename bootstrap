@@ -15,4 +15,4 @@ puts "+---------------+"
 ### Ruby
 ###
 puts "Preparing Ruby environment..."
-curl -L https://raw.github.com/miguno/ruby-bootstrap/master/ruby-bootstrap.sh | bash -s
+curl -L https://raw.githubusercontent.com/miguno/ruby-bootstrap/master/ruby-bootstrap.sh | bash -s
