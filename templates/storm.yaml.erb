@@ -9,6 +9,11 @@ storm.zookeeper.servers:
 
 nimbus.host: "<%= @nimbus_host %>"
 
+drpc.servers:
+<% for @drpcserver in @drpc_servers -%>
+  - <%= @drpcserver %>
+<% end -%>
+
 storm.local.dir: "<%= @local_dir %>"
 storm.local.hostname: "<%= @local_hostname %>"
 
@@ -34,6 +39,9 @@ supervisor.slots.ports:
 #                 Then set `storm.messaging.transport` to "backtype.storm.messaging.zmq".
 #
 storm.messaging.transport: "<%= @storm_messaging_transport %>"
+
+#Override to allow larger topologies
+nimbus.thrift.max_buffer_size: 52428800
 
 <%=
   require 'yaml'
