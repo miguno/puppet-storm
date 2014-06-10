@@ -9,6 +9,11 @@ storm.zookeeper.servers:
 
 nimbus.host: "<%= @nimbus_host %>"
 
+drpc.servers:
+<% for @drpcserver in @drpc_servers -%>
+  - <%= @drpcserver %>
+<% end -%>
+
 storm.local.dir: "<%= @local_dir %>"
 storm.local.hostname: "<%= @local_hostname %>"
 
