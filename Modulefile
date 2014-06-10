@@ -1,5 +1,5 @@
 name 'wirbelsturm-storm'
-version '1.0.13'
+version '1.0.14'
 source 'https://github.com/miguno/puppet-storm.git'
 author 'Michael G. Noll'
 license 'Apache License, Version 2.0'
