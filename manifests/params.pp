@@ -27,6 +27,7 @@ class storm::params {
   $service_name_nimbus     = 'storm-nimbus'
   $service_name_supervisor = 'storm-supervisor'
   $service_name_ui         = 'storm-ui'
+  $service_name_ui         = 'storm-drpc'
   $service_retries         = 999
   $service_startsecs       = 10
   $service_stderr_logfile_keep    = 10
