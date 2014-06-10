@@ -24,6 +24,7 @@ class storm(
   $logviewer_childopts     = $storm::params::logviewer_childopts,
   $nimbus_host             = $storm::params::nimbus_host,
   $nimbus_childopts        = $storm::params::nimbus_childopts,
+  $drpc_childopts          = $storm::params::drpc_childopts,
   $package_name            = $storm::params::package_name,
   $package_ensure          = $storm::params::package_ensure,
   $service_autorestart     = hiera('storm::service_autorestart', $storm::params::service_autorestart),
@@ -34,6 +35,7 @@ class storm(
   $service_name_nimbus     = $storm::params::service_name_nimbus,
   $service_name_supervisor = $storm::params::service_name_supervisor,
   $service_name_ui         = $storm::params::service_name_ui,
+  $service_name_drpc         = $storm::params::service_name_drpc,
   $service_retries         = $storm::params::service_retries,
   $service_startsecs       = $storm::params::service_startsecs,
   $service_stderr_logfile_keep    = $storm::params::service_stderr_logfile_keep,
@@ -71,6 +73,7 @@ class storm(
   validate_string($logviewer_childopts)
   validate_string($nimbus_host)
   validate_string($nimbus_childopts)
+  validate_string($drpc_childopts)
   validate_string($package_name)
   validate_string($package_ensure)
   validate_bool($service_autorestart)
@@ -81,6 +84,7 @@ class storm(
   validate_string($service_name_nimbus)
   validate_string($service_name_supervisor)
   validate_string($service_name_ui)
+  validate_string($service_name_drpc)
   if !is_integer($service_retries) { fail('The $service_retries parameter must be an integer number') }
   if !is_integer($service_startsecs) { fail('The $service_startsecs parameter must be an integer number') }
   if !is_integer($service_stderr_logfile_keep) {

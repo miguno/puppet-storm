@@ -35,6 +35,9 @@ supervisor.slots.ports:
 #
 storm.messaging.transport: "<%= @storm_messaging_transport %>"
 
+#Override to allow larger topologies
+nimbus.thrift.max_buffer_size: 52428800
+
 <%=
   require 'yaml'
   @config_map.to_yaml.lines.

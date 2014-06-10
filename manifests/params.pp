@@ -16,6 +16,7 @@ class storm::params {
   $logviewer_childopts     = '-Xmx128m -Djava.net.preferIPv4Stack=true'
   $nimbus_host             = 'nimbus1'
   $nimbus_childopts        = '-Xmx256m -Djava.net.preferIPv4Stack=true'
+  $drpc_childopts          = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $package_name            = 'storm'
   $package_ensure          = 'present'
   $service_autorestart     = true
