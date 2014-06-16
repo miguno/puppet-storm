@@ -56,6 +56,7 @@ class storm(
   $user_managehome         = hiera('storm::user_managehome', $storm::params::user_managehome),
   $worker_childopts        = $storm::params::worker_childopts,
   $zookeeper_servers       = $storm::params::zookeeper_servers,
+  $drpc_servers            = $storm::params::drpc_servers,
 ) inherits storm::params {
 
   validate_string($command)
@@ -109,6 +110,7 @@ class storm(
   validate_bool($user_managehome)
   validate_string($worker_childopts)
   validate_array($zookeeper_servers)
+  validate_array($drpc_servers)
 
   include '::storm::users'
   include '::storm::install'
