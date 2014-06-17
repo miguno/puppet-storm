@@ -16,6 +16,7 @@ class storm::params {
   $logviewer_childopts     = '-Xmx128m -Djava.net.preferIPv4Stack=true'
   $nimbus_host             = 'nimbus1'
   $nimbus_childopts        = '-Xmx256m -Djava.net.preferIPv4Stack=true'
+  $drpc_childopts          = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $package_name            = 'storm'
   $package_ensure          = 'present'
   $service_autorestart     = true
@@ -26,6 +27,7 @@ class storm::params {
   $service_name_nimbus     = 'storm-nimbus'
   $service_name_supervisor = 'storm-supervisor'
   $service_name_ui         = 'storm-ui'
+  $service_name_drpc         = 'storm-drpc'
   $service_retries         = 999
   $service_startsecs       = 10
   $service_stderr_logfile_keep    = 10
@@ -46,6 +48,7 @@ class storm::params {
   $user_managehome         = true
   $worker_childopts        = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $zookeeper_servers       = ['zookeeper1']
+  $drpc_servers       = ['drpc1']
 
   # Parameters not exposed to the user via init.pp
   $storm_rpm_log_dir       = '/opt/storm/logs' # Must match RPM layout; use $log_dir to define actual logging directory
