@@ -9,9 +9,11 @@ storm.zookeeper.servers:
 
 nimbus.host: "<%= @nimbus_host %>"
 
+<% if !@drpc_servers.empty? -%>
 drpc.servers:
 <% for @drpcserver in @drpc_servers -%>
   - <%= @drpcserver %>
+<% end -%>
 <% end -%>
 
 storm.local.dir: "<%= @local_dir %>"
