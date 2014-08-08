@@ -151,12 +151,13 @@ re-define config settings via `$config_map` that already have explicit Puppet cl
 A "full" single-node example that includes the deployment of [supervisord](http://www.supervisord.org/) via
 [puppet-supervisor](https://github.com/miguno/puppet-supervisor) and
 [ZooKeeper](http://zookeeper.apache.org/) via [puppet-zookeeper](https://github.com/miguno/puppet-zookeeper).
-Here, both ZooKeeper and Storm (Logviewer, Nimbus, Supervisor, UI) are running on the same machine called
+Here, both ZooKeeper and Storm (Logviewer, Nimbus, Supervisor, UI, DRPC) are running on the same machine called
 `stormsingle1`.  That's a nice setup for your local development laptop or CI server, for instance.
 
 ```yaml
 ---
 classes:
+  - storm::drpc
   - storm::logviewer
   - storm::nimbus
   - storm::supervisor
@@ -165,10 +166,11 @@ classes:
   - zookeeper::service
 
 # Custom Storm settings
+storm::nimbus_host: 'stormsingle1'
 storm::zookeeper_servers:
   - 'stormsingle1'
+storm::drpc_childopts:       '-Xmx256m -Djava.net.preferIPv4Stack=true'
 storm::logviewer_childopts:  '-Xmx128m -Djava.net.preferIPv4Stack=true'
-storm::nimbus_host: 'stormsingle1'
 storm::nimbus_childopts:     '-Xmx256m -Djava.net.preferIPv4Stack=true'
 storm::ui_childopts:         '-Xmx256m -Djava.net.preferIPv4Stack=true'
 storm::supervisor_childopts: '-Xmx256m -Djava.net.preferIPv4Stack=true'
@@ -185,6 +187,8 @@ storm::config_map:
   storm.messaging.netty.max_retries: 100
   storm.messaging.netty.max_wait_ms: 1000
   storm.messaging.netty.min_wait_ms: 100
+storm::drpc_servers:
+  - 'stormsingle1'
 ```
 
 Of course you can (and normally will) use multiple Storm nodes.  Here, you will typically run Storm Nimbus and Storm UI
@@ -256,6 +260,7 @@ To manually start, stop, restart, or check the status of the Storm daemons, resp
 Example:
 
     $ sudo supervisorctl status
+    storm-drpc                       RUNNING    pid 7490, uptime 0:05:34
     storm-logviewer                  RUNNING    pid 7491, uptime 0:05:17
     storm-nimbus                     RUNNING    pid 7491, uptime 0:05:12
     storm-ui                         RUNNING    pid 7421, uptime 0:05:26
@@ -270,6 +275,8 @@ _Note: The locations below may be different depending on the Storm RPM you are a
 
 * Storm log files: `/var/log/storm/*`
 * Supervisord log files related to Storm processes:
+    * `/var/log/supervisor/storm-ui/storm-drpc.out`
+    * `/var/log/supervisor/storm-ui/storm-drpc.err`
     * `/var/log/supervisor/storm-nimbus/storm-nimbus.out`
     * `/var/log/supervisor/storm-nimbus/storm-nimbus.err`
     * `/var/log/supervisor/storm-supervisor/storm-supervisor.out`
