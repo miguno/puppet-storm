@@ -6,7 +6,7 @@ class storm::params {
   $config_map              = {}
   $config_template         = 'storm/storm.yaml.erb'
   $drpc_childopts          = '-Xmx256m -Djava.net.preferIPv4Stack=true'
-  $drpc_servers            = ['drpc1']
+  $drpc_servers            = []
   $gid                     = 53001
   $group                   = 'storm'
   $group_ensure            = 'present'
