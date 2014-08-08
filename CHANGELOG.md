@@ -4,6 +4,7 @@
 
 IMPROVEMENTS
 
+* Add Storm DRPC support. (thanks andrewserff) [GH-3]
 * bootstrap: Use new GitHub.com URL for retrieving raw user content.
 
 
