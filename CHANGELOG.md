@@ -1,6 +1,11 @@
 # Change log
 
-## 1.0.12 (unreleased)
+## 1.0.13 (unreleased)
+
+* TBD
+
+
+## 1.0.12 (August 08, 2014)
 
 IMPROVEMENTS
 
