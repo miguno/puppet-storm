@@ -7,6 +7,11 @@ class storm::params {
   $config_template         = 'storm/storm.yaml.erb'
   $drpc_childopts          = '-Xmx256m -Djava.net.preferIPv4Stack=true'
   $drpc_servers            = []
+  $enable_drpc             = false
+  $enable_logviewer        = false
+  $enable_nimbus           = false
+  $enable_supervisor       = false
+  $enable_ui		   = false
   $gid                     = 53001
   $group                   = 'storm'
   $group_ensure            = 'present'
