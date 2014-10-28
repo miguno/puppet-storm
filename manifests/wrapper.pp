@@ -124,4 +124,7 @@ if str2bool($enable_supervisor) {
 if str2bool($enable_ui) {
  class { 'storm::ui' : service_environment => $service_environment }
 }
+if str2bool($enable_nimbus) {
+ class { 'storm::nimbus' : service_environment => $service_environment }
+}
 }
