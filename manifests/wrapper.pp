@@ -113,7 +113,7 @@ class { 'storm':
   zookeeper_servers              => $zookeeper_servers,
 }
 if str2bool($enable_drpc) {
- class { 'storm::dprc': service_environment => $service_environment }
+ class { 'storm::drpc': service_environment => $service_environment }
 }
 if str2bool($enable_logviewer)  {
  class { 'storm::logviewer': service_environment => $service_environment }
