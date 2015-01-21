@@ -3,8 +3,8 @@
 class storm::install inherits storm {
 
   package { 'storm':
-    ensure  => $package_ensure,
-    name    => $package_name,
+    ensure => $package_ensure,
+    name   => $package_name,
   }
 
   # This exec ensures we create intermediate directories for $local_dir as required
@@ -37,10 +37,10 @@ class storm::install inherits storm {
     }
     ->
     file { $log_dir:
-      ensure  => directory,
-      owner   => $user,
-      group   => $group,
-      mode    => '0755',
+      ensure => directory,
+      owner  => $user,
+      group  => $group,
+      mode   => '0755',
     }
     ->
     file { $storm::params::storm_rpm_log_dir:
