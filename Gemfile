@@ -3,8 +3,8 @@ source 'https://rubygems.org'
 group :test do
   # Pin rspec to < 3.0.0 because of a known compatibility issue of rspec 3.x with rspec-puppet
   # See https://github.com/rodjek/rspec-puppet/issues/198
-  rspecversion = ENV.key?('RSPEC_VERSION') ? "= #{ENV['RSPEC_VERSION']}" : ['>= 2.9 ', '< 3.0.0']
-  gem 'rspec', rspecversion
+  #rspecversion = ENV.key?('RSPEC_VERSION') ? "= #{ENV['RSPEC_VERSION']}" : ['>= 2.9 ', '< 3.0.0']
+  #gem 'rspec', rspecversion
 
   # Rake 10.2.0+ requires Ruby >= 1.9
   gem 'rake', '< 10.2.0' if RUBY_VERSION < '1.9.0'
