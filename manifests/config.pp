@@ -20,4 +20,13 @@ class storm::config inherits storm {
     require => File[$config],
   }
 
+  file { $logback_worker:
+    ensure  => file,
+    owner   => root,
+    group   => root,
+    mode    => '0644',
+    content => template($logback_worker_template),
+    require => File[$config],
+  }
+
 }

@@ -1,8 +1,10 @@
 # Change log
 
-## 1.0.13 (unreleased)
+## 1.0.13 (January 21, 2015)
 
-* TBD
+IMPROVEMENTS
+
+* Support worker.xml logback configuration for Storm 0.10+
 
 
 ## 1.0.12 (August 08, 2014)

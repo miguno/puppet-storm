@@ -23,6 +23,8 @@ class storm(
   $log_dir                 = $storm::params::log_dir,
   $logback                 = $storm::params::logback,
   $logback_template        = $storm::params::logback_template,
+  $logback_worker          = $storm::params::logback_worker,
+  $logback_worker_template = $storm::params::logback_worker_template,
   $logviewer_childopts     = $storm::params::logviewer_childopts,
   $nimbus_host             = $storm::params::nimbus_host,
   $nimbus_childopts        = $storm::params::nimbus_childopts,
@@ -73,6 +75,8 @@ class storm(
   validate_absolute_path($log_dir)
   validate_absolute_path($logback)
   validate_string($logback_template)
+  validate_absolute_path($logback_worker)
+  validate_string($logback_worker_template)
   validate_string($logviewer_childopts)
   validate_string($nimbus_host)
   validate_string($nimbus_childopts)

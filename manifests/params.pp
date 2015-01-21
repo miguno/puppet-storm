@@ -15,6 +15,8 @@ class storm::params {
   $log_dir                 = '/var/log/storm'
   $logback                 = '/opt/storm/logback/cluster.xml'
   $logback_template        = 'storm/cluster.xml.erb'
+  $logback_worker          = '/opt/storm/logback/worker.xml'
+  $logback_worker_template = 'storm/worker.xml.erb'
   $logviewer_childopts     = '-Xmx128m -Djava.net.preferIPv4Stack=true'
   $nimbus_host             = 'nimbus1'
   $nimbus_childopts        = '-Xmx256m -Djava.net.preferIPv4Stack=true'
