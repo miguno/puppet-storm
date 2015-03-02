@@ -1,15 +1,15 @@
 # Change log
 
-## 1.0.14 (unreleased)
+## 1.0.14 (March 02, 2015)
 
-TBD
+* Use `SIGKILL` to stop `logviewer` processes.
 
 
 ## 1.0.13 (January 21, 2015)
 
 IMPROVEMENTS
 
-* Support worker.xml logback configuration for Storm 0.10+
+* Support `worker.xml` logback configuration for Storm 0.10+
 
 
 ## 1.0.12 (August 08, 2014)
