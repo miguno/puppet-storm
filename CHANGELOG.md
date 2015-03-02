@@ -1,5 +1,10 @@
 # Change log
 
+## 1.0.15 (unreleased)
+
+* TBD
+
+
 ## 1.0.14 (March 02, 2015)
 
 * Use `SIGKILL` to stop `logviewer` processes.
