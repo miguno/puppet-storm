@@ -269,6 +269,14 @@ describe 'storm' do
               to raise_error(Puppet::Error, /"6700" is not an Array.  It looks to be a String/) }
           end
 
+          describe "storm class with limits_manage enabled on #{osfamily}" do
+            let(:params) {{
+              :limits_manage => true,
+            }}
+            it { should contain_limits__fragment('storm/soft/nofile').with_value(65536) }
+            it { should contain_limits__fragment('storm/hard/nofile').with_value(65536) }
+          end
+
           describe "storm class with disabled user management on #{osfamily}" do
             let(:params) {{
               :user_manage  => false,

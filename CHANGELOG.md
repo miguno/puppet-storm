@@ -1,8 +1,9 @@
 # Change log
 
-## 1.0.15 (unreleased)
+## 1.0.15 (April 16, 2015)
 
-* TBD
+* Support tuning number of open files aka `nofile` (cf. `/etc/security/limits.conf`) for the Storm user via the
+  Hiera parameters `storm::limits_manage` (boolean) and `storm::limits_nofile` (number).
 
 
 ## 1.0.14 (March 02, 2015)

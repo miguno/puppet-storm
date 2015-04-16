@@ -18,6 +18,8 @@ class storm(
   $gid                     = $storm::params::gid,
   $group                   = $storm::params::group,
   $group_ensure            = $storm::params::group_ensure,
+  $limits_manage           = hiera('storm::limits_manage', $storm::params::limits_manage),
+  $limits_nofile           = $storm::params::limits_nofile,
   $local_dir               = $storm::params::local_dir,
   $local_hostname          = $storm::params::local_hostname,
   $log_dir                 = $storm::params::log_dir,
@@ -70,6 +72,8 @@ class storm(
   if !is_integer($gid) { fail('The $gid parameter must be an integer number') }
   validate_string($group)
   validate_string($group_ensure)
+  validate_bool($limits_manage)
+  if !is_integer($limits_nofile) { fail('The $limits_nofile parameter must be an integer number') }
   validate_absolute_path($local_dir)
   validate_string($local_hostname)
   validate_absolute_path($log_dir)

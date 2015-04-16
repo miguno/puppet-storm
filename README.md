@@ -50,6 +50,8 @@ See section [Usage](#usage) below.
   deployed and to which machines.
 * Supports RHEL OS family (e.g. RHEL 6, CentOS 6, Amazon Linux).
     * Code contributions to support additional OS families are welcome!
+* Supports tuning of system-level configuration such as the maximum number of open files (cf.
+  `/etc/security/limits.conf`) to optimize the performance of your Storm deployments.
 * Storm is run under process supervision via [supervisord](http://www.supervisord.org/) version 3.0+.
 
 
@@ -77,6 +79,7 @@ See section [Usage](#usage) below.
 * This module requires the following **additional Puppet modules**:
 
     * [puppetlabs/stdlib](https://github.com/puppetlabs/puppetlabs-stdlib)
+    * [puppet-limits](https://github.com/miguno/puppet-limits)
     * [puppet-supervisor](https://github.com/miguno/puppet-supervisor)
 
   It is recommended that you add these modules to your Puppet setup via
@@ -109,7 +112,10 @@ mod 'puppetlabs/stdlib'
 mod 'storm',
   :git => 'https://github.com/miguno/puppet-storm.git'
 
-# Add the puppet-supervisor module dependency
+# Add the puppet-limits and puppet-supervisor module dependencies
+mod 'limits',
+  :git => 'https://github.com/miguno/puppet-limits.git'
+
 mod 'supervisor',
   :git => 'https://github.com/miguno/puppet-supervisor.git'
 ```
@@ -236,6 +242,12 @@ storm::supervisor_slots_ports:
   - 6701
   - 6702
   - 6703
+
+# Optional: Manage /etc/security/limits.conf to tune the maximum number
+# of open files, which is a typical setting you must change for Storm
+# production environments.  Default: false (do not manage)
+storm::limits_manage: true
+storm::limits_nofile: 65536
 ```
 
 
@@ -366,12 +378,6 @@ See [LICENSE](LICENSE) for licensing information.
 <a name="references"></a>
 
 # References
-
-Puppet modules similar to this module:
-
-* [wikimedia/puppet-kafka](https://github.com/wikimedia/puppet-kafka) -- focuses on Debian as the target OS, and
-  apparently also supports Kafka mirroring and jmxtrans monitoring (the latter for sending JVM and Kafka broker metrics
-  to tools such as Ganglia or Graphite)
 
 The test setup of this module was derived from:
 

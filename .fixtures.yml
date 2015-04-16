@@ -1,5 +1,6 @@
 fixtures:
   repositories:
+    limits: 'https://github.com/miguno/puppet-limits.git'
     stdlib:
       repo: 'git://github.com/puppetlabs/puppetlabs-stdlib.git'
       ref: '4.1.0'

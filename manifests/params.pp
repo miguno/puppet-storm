@@ -10,6 +10,8 @@ class storm::params {
   $gid                     = 53001
   $group                   = 'storm'
   $group_ensure            = 'present'
+  $limits_manage           = false
+  $limits_nofile           = 65536
   $local_dir               = '/app/storm'
   $local_hostname          = $::hostname
   $log_dir                 = '/var/log/storm'

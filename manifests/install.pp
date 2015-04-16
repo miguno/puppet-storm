@@ -7,6 +7,13 @@ class storm::install inherits storm {
     name   => $package_name,
   }
 
+  if $limits_manage == true {
+    limits::fragment {
+      "${user}/soft/nofile": value => $limits_nofile;
+      "${user}/hard/nofile": value => $limits_nofile;
+    }
+  }
+
   # This exec ensures we create intermediate directories for $local_dir as required
   exec { 'create-storm-local-directory':
     command => "mkdir -p ${local_dir}",
