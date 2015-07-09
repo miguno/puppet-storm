@@ -35,7 +35,7 @@ class storm::install inherits storm {
       command => "mkdir -p ${log_dir}",
       path    => ['/bin', '/sbin'],
       require => Package['storm'],
-      creates => $Log_dir
+      creates => $log_dir
     }
     ->
     file { $log_dir:
