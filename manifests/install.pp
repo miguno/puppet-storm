@@ -12,7 +12,7 @@ class storm::install inherits storm {
     command => "mkdir -p ${local_dir}",
     path    => ['/bin', '/sbin'],
     require => Package['storm'],
-    creates => $local_dir
+    creates => $local_dir,
   }
   ->
   file { $local_dir:
@@ -35,7 +35,7 @@ class storm::install inherits storm {
       command => "mkdir -p ${log_dir}",
       path    => ['/bin', '/sbin'],
       require => Package['storm'],
-      creates => $log_dir
+      creates => $log_dir,
     }
     ->
     file { $log_dir:
