@@ -311,8 +311,12 @@ DEPENDENCIES
   puppet-lint
   puppet-syntax
   puppetlabs_spec_helper
+  rspec (< 3.2.0)
   rspec-puppet!
   serverspec
   travis
   travis-lint
   vagrant-wrapper
+
+BUNDLED WITH
+   1.10.5
