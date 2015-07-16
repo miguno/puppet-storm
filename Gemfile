@@ -5,6 +5,9 @@ group :test do
   # See https://github.com/rodjek/rspec-puppet/issues/198
   #rspecversion = ENV.key?('RSPEC_VERSION') ? "= #{ENV['RSPEC_VERSION']}" : ['>= 2.9 ', '< 3.0.0']
   #gem 'rspec', rspecversion
+  # Pin rspec on Ruby 1.8.7
+  # https://github.com/rspec/rspec-core/issues/1864
+  gem 'rspec', '< 3.2.0', {"platforms"=>["ruby_18"]}
 
   # Rake 10.2.0+ requires Ruby >= 1.9
   gem 'rake', '< 10.2.0' if RUBY_VERSION < '1.9.0'
