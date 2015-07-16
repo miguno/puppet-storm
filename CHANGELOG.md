@@ -2,7 +2,9 @@
 
 ## 1.0.15 (unreleased)
 
-* TBD
+IMPROVEMENTS
+
+* Make directory creation operations idempotent. (thanks st33v) [PR-9]
 
 
 ## 1.0.14 (March 02, 2015)
