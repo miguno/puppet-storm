@@ -45,8 +45,21 @@ storm.messaging.transport: "<%= @storm_messaging_transport %>"
 
 <%=
   require 'yaml'
-  @config_map.to_yaml.lines.
-    select { |s| s =~ /^[^-]{3}/ }.
+
+  class Hash
+    def to_sorted_yaml(opts = {})
+      YAML::quick_emit(object_id, opts) do |out|
+        out.map(taguri, to_yaml_style) do |map|
+          sort.each do |k, v|
+            map.add(k, v)
+          end
+        end
+      end
+    end
+  end
+
+  @config_map.to_sorted_yaml.lines.
+    select { |s| s !~ /^[-]{3}/ }.
     map { |s| s.sub(/^  /, '').rstrip }.
     join("\n")
 
