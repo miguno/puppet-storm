@@ -1,0 +1,14 @@
+{
+  "name" : "wirbelsturm-storm",
+  "version": "1.0.15",
+  "author" : "Michael G. Noll",
+  "summary" : "Module for managing and configuring Storm",
+  "license" : "Apache License, Version 2.0",
+  "source" : "https://github.com/miguno/puppet-storm.git",
+  "project_page" : "https://github.com/miguno/puppet-storm",
+  "dependencies" : [
+  	  { "name" : "wirbelsturm/supervisor", "version_requirement" : ">= 1.0.3" },
+  	  { "name" : "puppetlabs/stdlib", "version_requirement" : ">= 4.1.0" }
+  ],
+  "operatingsystem_support" : []
+  }
